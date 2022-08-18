@@ -1,0 +1,23 @@
+.popup__input_theme_dark {
+    color: #FFFFFF;
+    background-color: #0000;
+    border-bottom: 2px solid #CCCCCC;
+}
+
+.popup__input_theme_dark::placeholder {
+    font-family: inherit;
+    color: #CCCCCC;
+  }
+  
+  .popup__input_theme_dark::-ms-input-placeholder {
+    font-family: inherit;
+    color: #CCCCCC;
+  }
+  
+  .popup__input_theme_dark::-webkit-input-placeholder {
+    color: #CCCCCC;
+  }
+  
+  .popup__input_theme_dark::-moz-placeholder {
+    color: #CCCCCC;
+  }

@@ -1,0 +1,11 @@
+.popup__input-container_theme_light {
+  margin: 0 0 18px 0;
+}
+
+@media screen and (max-width: 767px) {
+
+  .popup__input-container_theme_light {
+    margin: 0 0 15px 0;
+  }
+
+}

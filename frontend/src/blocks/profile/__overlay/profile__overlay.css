@@ -1,0 +1,9 @@
+.profile__overlay {
+  position: absolute;
+  top: 87px;
+  left: 47px;
+  z-index: -1;
+
+}
+
+

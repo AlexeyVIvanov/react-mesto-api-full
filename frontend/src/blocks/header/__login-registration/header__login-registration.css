@@ -1,0 +1,19 @@
+.header__login-registration {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 22px;
+  /* identical to box height, or 122% */
+  text-align: right;
+  color: #FFFFFF;
+  background-color: transparent;
+  text-decoration: none;
+  border: 0;
+  padding: 0 0 46px;
+}
+
+.header__login-registration:hover {
+  opacity: .6;
+  cursor: pointer;
+}
+
