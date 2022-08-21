@@ -23,9 +23,12 @@ const app = express();
 const allowedCors = [
   'https://api.1970ivanov.nomoredomains.sbs',
   'http://api.1970ivanov.nomoredomains.sbs',
-  'localhost:3000',
+  'https://localhost:3000',
+  'http://localhost:3000',
   'https://1970ivanov.nomoredomains.sbs',
   'http://1970ivanov.nomoredomains.sbs',
+  'https://api.1970ivanov.nomoredomains/signup.sbs',
+  'https://api.1970ivanov.nomoredomains/signin.sbs',
 ];
 
 app.use((req, res, next) => {
