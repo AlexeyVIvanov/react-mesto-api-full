@@ -19,6 +19,9 @@ const NotFoundError = require('./utils/errors/not-found');
 const { PORT = 3000 } = process.env;
 const app = express();
 
+app.use(bodyParser.json()); // для собирания JSON-формата
+app.use(bodyParser.urlencoded({ extended: true })); // для приёма веб-страниц внутри POST-запроса
+
 // Массив доменов, с которых разрешены кросс-доменные запросы
 const allowedCors = [
   'https://api.1970ivanov.nomoredomains.sbs',
@@ -27,8 +30,6 @@ const allowedCors = [
   'http://localhost:3000',
   'https://1970ivanov.nomoredomains.sbs',
   'http://1970ivanov.nomoredomains.sbs',
-  'https://api.1970ivanov.nomoredomains.sbs/signup',
-  'https://api.1970ivanov.nomoredomains.sbs/signin',
 ];
 
 app.use((req, res, next) => {
@@ -51,14 +52,11 @@ app.use((req, res, next) => {
     // разрешаем кросс-доменные запросы с этими заголовками
     res.header('Access-Control-Allow-Headers', requestHeaders);
     // завершаем обработку запроса и возвращаем результат клиенту
-    res.end();
+    return res.end();
   }
 
-  next();
+  return next();
 });
-
-app.use(bodyParser.json()); // для собирания JSON-формата
-app.use(bodyParser.urlencoded({ extended: true })); // для приёма веб-страниц внутри POST-запроса
 
 mongoose.connect('mongodb://localhost:27017/mestodb', {
   useNewUrlParser: true,
