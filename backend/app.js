@@ -27,8 +27,8 @@ const allowedCors = [
   'http://localhost:3000',
   'https://1970ivanov.nomoredomains.sbs',
   'http://1970ivanov.nomoredomains.sbs',
-  'https://api.1970ivanov.nomoredomains/signup.sbs',
-  'https://api.1970ivanov.nomoredomains/signin.sbs',
+  'https://api.1970ivanov.nomoredomains.sbs/signup',
+  'https://api.1970ivanov.nomoredomains.sbs/signin',
 ];
 
 app.use((req, res, next) => {
