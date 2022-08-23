@@ -90,7 +90,7 @@ function App() {
           isAnswer: true,
           isAnswerMessage: "Вы успешно зарегистрировались!",
         });
-        history.push("/signin");
+        history.push("/sing-in");
       })
       .catch((err) => {
         console.log("err", err); // выведем ошибку в консоль
