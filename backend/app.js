@@ -22,10 +22,12 @@ const app = express();
 app.use(bodyParser.json()); // для собирания JSON-формата
 app.use(bodyParser.urlencoded({ extended: true })); // для приёма веб-страниц внутри POST-запроса
 
+mongoose.connect('mongodb://localhost:27017/mestodb', {
+  useNewUrlParser: true,
+});
+
 // Массив доменов, с которых разрешены кросс-доменные запросы
 const allowedCors = [
-  'https://api.1970ivanov.nomoredomains.sbs',
-  'http://api.1970ivanov.nomoredomains.sbs',
   'https://localhost:3000',
   'http://localhost:3000',
   'https://1970ivanov.nomoredomains.sbs',
@@ -55,10 +57,6 @@ app.use((req, res, next) => {
   }
 
   return next();
-});
-
-mongoose.connect('mongodb://localhost:27017/mestodb', {
-  useNewUrlParser: true,
 });
 
 app.use(requestLogger); // подключаем логгер запросов
