@@ -69,7 +69,7 @@ function Register(props) {
             </button>
             <div className="popup__signin">
               <p className="popup__signin-text">Уже зарегистрированы?</p>
-              <Link to="/sign-in" className="popup__login-link">
+              <Link to="/signin" className="popup__login-link">
                 Войти
               </Link>
             </div>

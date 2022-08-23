@@ -128,14 +128,14 @@ function App() {
     localStorage.removeItem("jwt");
     setLoggedIn(false);
     setUserData(null);
-    history.push("/sign-in");
+    history.push("/signin");
   }
 
   function toLogin() {
-    history.push("/sign-in");
+    history.push("/signin");
   }
   function toRegister() {
-    history.push("/sign-up");
+    history.push("/signup");
   }
 
   function handleAddPlaceSubmit({ name, link }) {
@@ -282,16 +282,16 @@ function App() {
           <Header
             userData={userData}
             text={
-              location.pathname === "/sign-in"
+              location.pathname === "/signin"
                 ? "Регистрация"
-                : location.pathname === "/sign-up"
+                : location.pathname === "/signup"
                 ? "Войти"
                 : "Выйти"
             }
             click={
               location.pathname === "/"
                 ? onLogout
-                : location.pathname === "/sign-in"
+                : location.pathname === "/signin"
                 ? toRegister
                 : toLogin
             }
@@ -311,19 +311,19 @@ function App() {
               onCardLike={handleCardLike}
               onCardDelete={handleCardDelete}
             />
-            <Route path="/sign-up">
+            <Route path="/signup">
               {" "}
               {/*для регистрации*/}
               <Register handleRegister={handleRegister} />
             </Route>
-            <Route path="/sign-in">
+            <Route path="/signin">
               {" "}
               {/*для авторизации*/}
               <Login handleLogin={handleLogin} />
             </Route>
 
             <Route>
-              {!loggedIn ? <Redirect to="/sign-in" /> : <Redirect to="/" />}
+              {!loggedIn ? <Redirect to="/signin" /> : <Redirect to="/" />}
             </Route>
           </Switch>
 
