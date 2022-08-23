@@ -80,5 +80,9 @@ class Api {
 }
 
 export const api = new Api({
-  baseUrl: 'https://api.1970ivanov.nomoredomains.sbs',  
+  baseUrl: 'https://api.1970ivanov.nomoredomains.sbs',
+  headers: {    
+    authorization: `Bearer ${localStorage.getItem('jwt')}`,
+    "Content-Type": "application/json",
+  },  
 });
