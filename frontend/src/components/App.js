@@ -125,7 +125,7 @@ function App() {
   };
 
   function onLogout() {
-    localStorage.removeItem("jwt");
+    localStorage.removeItem("token");
     setLoggedIn(false);
     setUserData(null);
     history.push("/signin");
@@ -158,8 +158,7 @@ function App() {
     api
       .changeLikeCardStatus(card._id, !isLiked)
       .then((newCard) => {
-        setCards((state) =>
-          state.map((c) => (c._id === card._id ? newCard : c))
+        setCards((state) => state.map((c) => (c._id === card._id ? newCard : c))
         );
       })
       .catch((err) => {
@@ -183,8 +182,11 @@ function App() {
     if (loggedIn) {
       api
         .getInitialCards()
-        .then((cards) => {
+        
+        .then(({ data: cards }) => {  
+          console.log({ data: cards })        
           setCards(cards);
+          
         })
         .catch((err) => {
           console.log(err); // выведем ошибку в консоль
