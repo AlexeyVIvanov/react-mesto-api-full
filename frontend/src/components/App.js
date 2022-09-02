@@ -141,8 +141,8 @@ function App() {
   function handleAddPlaceSubmit({ name, link }) {
     api
       .addCard({ name, link })
-      .then((newCard) => {
-        setCards([newCard, ...cards]);
+      .then(({ data: card }) => {
+        setCards([card, ...cards]);
         closeAllPopups();
       })
       .catch((err) => {
@@ -152,13 +152,13 @@ function App() {
 
   function handleCardLike(card) {
     // Снова проверяем, есть ли уже лайк на этой карточке
-    const isLiked = card.likes.some((i) => i._id === currentUser._id);
-
+    const isLiked = card.likes.some((i) => i === currentUser._id);
+    
     // Отправляем запрос в API и получаем обновлённые данные карточки
     api
       .changeLikeCardStatus(card._id, !isLiked)
-      .then((newCard) => {
-        setCards((state) => state.map((c) => (c._id === card._id ? newCard : c))
+      .then(({ data: user }) => {        
+        setCards((state) => state.map((c) => (c._id === card._id ? user : c))
         );
       })
       .catch((err) => {
@@ -181,11 +181,9 @@ function App() {
   React.useEffect(() => {
     if (loggedIn) {
       api
-        .getInitialCards()
-        
-        .then(({ data: cards }) => {  
-          console.log({ data: cards })        
-          setCards(cards);
+        .getInitialCards()        
+        .then(({ data: card }) => {                    
+          setCards(card.reverse());
           
         })
         .catch((err) => {
@@ -198,8 +196,8 @@ function App() {
     if (loggedIn) {
       api
         .getProfile()
-        .then((data) => {
-          setCurrentUser(data);
+        .then(({ data: user }) => {          
+          setCurrentUser(user);
         })
         .catch((err) => {
           console.log(err); // выведем ошибку в консоль
@@ -256,8 +254,8 @@ function App() {
   function handleUpdateUser({ name, about }) {
     api
       .editProfile({ name, about })
-      .then((data) => {
-        setCurrentUser(data);
+      .then(({ name, about }) => {        
+        setCurrentUser({ ...currentUser, name, about });
         closeAllPopups();
       })
       .catch((err) => {
@@ -268,8 +266,8 @@ function App() {
   function handleUpdateAvatar({ avatar }) {
     api
       .updateAvatar({ avatar })
-      .then((data) => {
-        setCurrentUser(data);
+      .then(({ avatar }) => {        
+        setCurrentUser({ ...currentUser, avatar });
         closeAllPopups();
       })
       .catch((err) => {

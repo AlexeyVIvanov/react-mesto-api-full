@@ -14,6 +14,8 @@ const BadRequestError = require('../utils/errors/bad-request');
 
 const ConflictError = require('../utils/errors/conflict');
 
+const { NODE_ENV, JWT_SECRET } = process.env;
+
 module.exports.getUsers = (req, res, next) => {
   User.find({})
     .then((user) => res.send({ data: user }))
@@ -140,7 +142,11 @@ module.exports.login = (req, res, next) => {
       // аутентификация успешна
       // res.send({ message: 'Всё верно!' });
       // создадим токен
-      const token = jwt.sign({ _id: user._id }, 'some-secret-key', { expiresIn: '7d' });
+      const token = jwt.sign(
+        { _id: user._id },
+        NODE_ENV === 'production' ? JWT_SECRET : 'some-secret-key',
+        { expiresIn: '7d' },
+      );
       // вернём токен
       res.send({ token });
     })
