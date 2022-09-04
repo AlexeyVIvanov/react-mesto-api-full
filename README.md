@@ -5,7 +5,7 @@
 ## H2 Ссылка на проект:  
 (https://1970ivanov.nomoredomains.sbs)  
 (http://1970ivanov.nomoredomains.sbs)
-## H2 Ссылка на проект:  
+## H2 Ссылка на домен:  
 (https://api.1970ivanov.nomoredomains.sbs)    
 ## H2 Публичный IPv4 сервера:  
 (http://84.201.173.180)
